@@ -11,6 +11,18 @@ namespace Ost_Inventory_b4.Controllers
         // GET: Auth
         public ActionResult Login()
         {
+            ViewBag.Message = "";
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string txtUserName, string txtPassword)
+        {
+            string Message = "Unauthorized";
+            if (txtUserName == "Ost" && txtPassword == "123")
+            {
+                Message = "Authorized";
+            }
+            ViewBag.Message = Message;
             return View();
         }
     }
