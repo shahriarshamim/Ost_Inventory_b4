@@ -21,9 +21,10 @@ namespace Ost_Inventory_b4.Controllers
             if (txtUserName == "Ost" && txtPassword == "123")
             {
                 Message = "Authorized";
+                return RedirectToAction("Dashboard", "Inventory");
             }
             ViewBag.Message = Message;
-            return View();
+            return View("Login");
         }
     }
 }
