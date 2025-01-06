@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ost_Inventory_b4.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,19 +12,30 @@ namespace Ost_Inventory_b4.Controllers
         // GET: Auth
         public ActionResult Login()
         {
+            Session["UserName"] = "";
             ViewBag.Message = "";
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string txtUserName, string txtPassword)
+        public ActionResult DoLogin(string txtUserName, string txtPassword) 
         {
+            Session["UserName"] = "";
             string Message = "Unauthorized";
-            if (txtUserName == "Ost" && txtPassword == "123")
+            //if (txtUserName == "Ost" && txtPassword == "123")
+            BaseAccount baseAccount = new BaseAccount();
+            if(baseAccount.VerifyUser(txtUserName,txtPassword))
             {
                 Message = "Authorized";
+                Session["UserName"] = txtUserName;
                 return RedirectToAction("Dashboard", "Inventory");
             }
             ViewBag.Message = Message;
+            return View("Login");
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Remove("UserName");
             return View("Login");
         }
     }

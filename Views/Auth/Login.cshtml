@@ -11,7 +11,7 @@
         @*<input style="width:98%;height:30px;" placeholder="User Name"/><br />
             <input style="width:98%;height:30px;margin-top:2px;" placeholder="Password"/>
             <input type="submit" value="Log In" style="width:100%;height:30px;margin-top:2px" />*@
-        <form method="post" action="@Url.Action("Login","Auth")">
+        <form method="post" action="@Url.Action("DoLogin","Auth")">
             <div class="mb-3">
                 <label for="txtUserName" class="form-label">Email address</label>
                 <input type="text" class="form-control" id="txtUserName" aria-describedby="emailHelp" name="txtUserName">

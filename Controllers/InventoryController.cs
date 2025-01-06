@@ -11,6 +11,7 @@ namespace Ost_Inventory_b4.Controllers
         // GET: Inventory
         public ActionResult Dashboard()
         {
+            string user = Session["UserName"].ToString();
             return View();
         }
     }
