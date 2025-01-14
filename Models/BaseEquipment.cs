@@ -61,5 +61,31 @@ namespace Ost_Inventory_b4.Models
             }
             return lstEquips;
         }
+        public static DataTable ListCustomerAssigned()
+        {
+            DataTable dataTable1 = new DataTable();
+            string ConnString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
+            SqlConnection sqlConnection = new SqlConnection(ConnString);
+
+            try
+            {
+                sqlConnection.Open();
+                string Query = "spOst_LstCustomerEquiAssignment";
+                SqlCommand cmd = new SqlCommand(Query, sqlConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);    //fetch mode table data  
+                adapter.Fill(dataTable1);
+                cmd.Dispose();
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                sqlConnection.Close();
+            }
+            return dataTable1;
+        }
     }
 }

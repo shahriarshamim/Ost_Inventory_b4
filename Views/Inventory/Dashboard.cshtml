@@ -1,4 +1,4 @@
-﻿@using Ost_Inventory_b4.Models;
+﻿
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -45,78 +45,17 @@
     }
 </style>
 @{
-    BaseEquipment baseEquipment = new BaseEquipment();
-    List<BaseEquipment> equipments = baseEquipment.LstEquipment();
+
 
     <div class="row">
         <div class="col col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    Equipment List
-                    <a href="#" class="btn btn-sm btn-primary" onclick="ShowModal()">Add New</a>
-                </div>
-                <div class="card-body">
-                    <div style="width:100%;height:400px;overflow:auto">
-                        <table class="ws-table-all" style="width:100%;">
-                            <tr>
-                                <th>EquipmentId</th>
-                                <th>EquipmentName</th>
-                                <th>Quantity</th>
-                                <th>Stock</th>
-                                <th>EntryDate</th>
-                                <th>ReceiveDate</th>
-                            </tr>
-                            @foreach (BaseEquipment obj in equipments)
-                            {
-                                <tr>
-                                    <td>@obj.EquipmentId</td>
-                                    <td>@obj.EquipmentName</td>
-                                    <td>@obj.Quantity</td>
-                                    <td>@obj.Stock</td>
-                                    <td>@obj.EntryDate.ToString("dd/MM/yyyy")</td>
-                                    <td>@obj.ReceiveDate.ToString("dd/MM/yyyy")</td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </div>
-            </div>            
+            @Html.Partial("~/Views/Inventory/_PartialEquipmentList.cshtml")
         </div>
         <div class="col col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    Assigened List
-                    <a href="#" class="btn btn-sm btn-primary">Add New</a>
-                </div>
-                <div class="card-body">
-                    <div style="width:100%;height:400px;overflow:auto">
-                        <table class="ws-table-all" style="width:100%;">
-                            <tr>
-                                <th>EquipmentId</th>
-                                <th>EquipmentName</th>
-                                <th>Quantity</th>
-                                <th>Stock</th>
-                                <th>EntryDate</th>
-                                <th>ReceiveDate</th>
-                            </tr>
-                            @foreach (BaseEquipment obj in equipments)
-                            {
-                                <tr>
-                                    <td>@obj.EquipmentId</td>
-                                    <td>@obj.EquipmentName</td>
-                                    <td>@obj.Quantity</td>
-                                    <td>@obj.Stock</td>
-                                    <td>@obj.EntryDate.ToString("dd/MM/yyyy")</td>
-                                    <td>@obj.ReceiveDate.ToString("dd/MM/yyyy")</td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </div>
-            </div>
+            @Html.Partial("~/Views/Inventory/_PartialEquipmentAssignedList.cshtml")
         </div>
     </div>
-    
+
 }
 
 
