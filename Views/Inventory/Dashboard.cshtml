@@ -44,19 +44,18 @@
         color: white;
     }
 </style>
-@{
-
-
-    <div class="row">
-        <div class="col col-sm-6">
-            @Html.Partial("~/Views/Inventory/_PartialEquipmentList.cshtml")
-        </div>
-        <div class="col col-sm-6">
-            @Html.Partial("~/Views/Inventory/_PartialEquipmentAssignedList.cshtml")
-        </div>
+<div class="row">
+    <div class="col col-sm-6">
+        @Html.Partial("~/Views/Inventory/_PartialEquipmentList.cshtml")
     </div>
+    <div class="col col-sm-6">
+        @Html.Partial("~/Views/Inventory/_PartialEquipmentAssignedList.cshtml")
+    </div>
+</div>
 
-}
+@Html.Partial("~/Views/Inventory/_PartialModalEquipmentEntry.cshtml")
+
+
 
 
 

@@ -1,14 +1,13 @@
 ﻿﻿@using System.Data;
-@{
-    
+@{    
     System.Data.DataTable dataTable = Ost_Inventory_b4.Models.BaseEquipment.ListCustomerAssigned();    
     var xdata = (from p in dataTable.AsEnumerable()
                  select new
                  {
                      CustomerID = p.Field<Int32>("CustomerID"),
                      CustomerName = p.Field<string>("CustomerName"),
-                     CustomerMobile = p.Field<string>("CustomerMobile"),
-                     CustAddress = p.Field<string>("CustAddress"),
+                     CustomerMobile = p.Field<Int32>("CustomerMobile"),
+                     CustomerAddress = p.Field<string>("CustomerAddress"),
                      EquiCount = p.Field<Int32>("EquiCount"),
                      EquipmentName = p.Field<string>("EquipmentName")
                  }).ToList();
@@ -36,7 +35,7 @@
                         <td>@obj.CustomerID</td>
                         <td>@obj.CustomerName</td>
                         <td>@obj.CustomerMobile</td>
-                        <td>@obj.CustAddress</td>
+                        <td>@obj.CustomerAddress</td>
                         <td>@obj.EquiCount</td>
                         <td>@obj.EquipmentName</td>
                     </tr>

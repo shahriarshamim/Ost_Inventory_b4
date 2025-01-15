@@ -3,6 +3,33 @@
     BaseEquipment baseEquipment = new BaseEquipment();
     List<BaseEquipment> equipments = baseEquipment.LstEquipment();
 }
+@*<script>
+    function ShowModal() {
+        $('#dvoverlay').css('display', '');
+        $('#dvModalEquipment').css('display', '');
+    }
+</script>*@
+<style>
+    .ui-widget-overlay {
+        background: #000 !important;
+    }
+</style>
+<script>
+    function ShowModal() {
+        $('#dvModalEquipment').dialog({
+            modal: true
+            //,
+            //buttons: {
+            //    "Ok": function () {
+            //        $(this).dialog("close");
+            //    },
+            //    Cancel: function () {
+            //        $(this).dialog("close");
+            //    }
+            //}
+        });
+    }
+</script>
     <div class="card">
         <div class="card-header">
             Equipment List

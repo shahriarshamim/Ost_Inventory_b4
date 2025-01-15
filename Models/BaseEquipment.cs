@@ -87,5 +87,41 @@ namespace Ost_Inventory_b4.Models
             }
             return dataTable1;
         }
+
+        public bool SaveEquipment()
+        {
+            bool status = false;
+            string ConnString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
+            SqlConnection sqlConnection = new SqlConnection(ConnString);
+
+            try
+            {
+                sqlConnection.Open();
+                string Query = "spOST_InsEquipment";
+                SqlCommand cmd = new SqlCommand(Query, sqlConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add(new SqlParameter("@Name", this.EquipmentName));
+                cmd.Parameters.Add(new SqlParameter("@EcCount", this.Quantity));
+                cmd.Parameters.Add(new SqlParameter("@EntryDate", this.EntryDate));
+                cmd.Parameters.Add(new SqlParameter("@ReceiveDate", this.ReceiveDate));
+                cmd.CommandTimeout = 0;
+
+                int returnvalue = cmd.ExecuteNonQuery();//insert delete update
+                if (returnvalue > 0)
+                {
+                    status = true;
+                }
+
+                //transaction
+                cmd.Dispose();
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                sqlConnection.Close();
+            }
+            return status;
+        }
     }
 }
