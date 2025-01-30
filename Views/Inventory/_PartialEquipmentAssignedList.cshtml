@@ -1,0 +1,48 @@
+﻿@using System.Data;
+@{
+    //List<Ost_inventory_b4.Models.BaseEquipment> equipments = (List<Ost_inventory_b4.Models.BaseEquipment>)ViewBag.Equipment;
+    System.Data.DataTable dataTable = Ost_Inventory_b4.Models.BaseEquipment.ListCustomerAssigned();
+    //CustomerID	CustomerName	CustomerMobile	CustAddress	EquiCount	EquipmentName
+    var xdata = (from p in dataTable.AsEnumerable()
+                 select new
+                 {
+                     CustomerID = p.Field<Int32>("CustomerID"),
+                     CustomerName = p.Field<string>("CustomerName"),
+                     CustomerMobile = p.Field<string>("CustomerMobile"),
+                     CustAddress = p.Field<string>("CustAddress"),
+                     EquiCount = p.Field<Int32>("EquiCount"),
+                     EquipmentName = p.Field<string>("EquipmentName")
+                 }).ToList();
+
+}
+<div class="card">
+    <div class="card-header">
+        Assigned List
+        <a class="btn btn-sm btn-primary" href="@Url.Action("CustomerAssignment","Inventory")">Add New</a>
+    </div>
+    <div class="card-body">
+        <div style="width:100%;height:400px;overflow:auto">
+            <table class="ws-table-all" style="width:100%">
+                <tr>
+                    <th> CustomerID </th>
+                    <th> CustomerName </th>
+                    <th> CustomerMobile </th>
+                    <th> CustAddress </th>
+                    <th> EquiCount </th>
+                    <th> EquipmentName </th>
+                </tr>
+                @foreach (var obj in xdata)
+                {
+                    <tr>
+                        <td>@obj.CustomerID</td>
+                        <td>@obj.CustomerName</td>
+                        <td>@obj.CustomerMobile</td>
+                        <td>@obj.CustAddress</td>
+                        <td>@obj.EquiCount</td>
+                        <td>@obj.EquipmentName</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

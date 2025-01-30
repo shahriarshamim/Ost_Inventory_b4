@@ -1,0 +1,42 @@
+﻿@*<script>
+    function HideModal() {
+        $('#dvoverlay').css('display', 'none');
+        $('#dvModalEquipment').css('display', 'none');
+    }
+</script>*@
+@*<div id="dvoverlay" style="position:fixed;left:0px;right:0px;bottom:0px;top:0px;background:#000;opacity:.6;z-index:10000;display:none">
+
+</div>
+<div id="dvModalEquipment" style="display: none;position: fixed; left: 0px; right: 0px; bottom: 0px; top: 0px; height: 300px; width: 400px; background: #fff; z-index: 10001; margin: auto; ">
+    Test Modal
+    <a href="#" class="btn btn-sm btn-primary" onclick="HideModal()">close</a>
+</div>*@
+
+
+<div id="dvModalEquipment" style="display: none;">
+    <div class="row">
+        <div class="col col-12">
+            <form action="@Url.Action("Dashboard","Inventory")" method="post">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                    <input type="text" name="txtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Quantity</span>
+                    <input type="text" name="txtQuantity" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Entry Date</span>
+                    <input type="text" name="txtEntryDate" class="form-control clsDateTime" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Receive Date</span>
+                    <input type="text" name="txtReceiveDate" class="form-control clsDateTime" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <input type="submit" value="Save" />
+            </form>
+
+        </div>
+    </div>
+</div>

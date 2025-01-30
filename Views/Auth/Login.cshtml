@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<div style="border: 1px solid beige; border-radius: 5px; width: 400px; height: 500px; position: fixed; top: 0px; left: 0px; right: 0px; margin: auto; bottom: 0px; background: #FFD9FF">
+    <div style="width: 350px; height: 450px;padding: 5px; position: absolute; top: 0px; right: 0px; left: 0px; bottom: 0px; margin: auto">
+        <h3 style="text-align:center">Login</h3>
+        <h4 style="text-align:center;color:#808080">Have an Account?</h4>
+        @*<input style="width:98%;height:30px;" placeholder="User Name"/><br />
+            <input style="width:98%;height:30px;margin-top:2px;" placeholder="Password"/>
+            <input type="submit" value="Log In" style="width:100%;height:30px;margin-top:2px" />*@
+        <form method="post" action="@Url.Action("DoLogin","Auth")">
+            <div class="mb-3">
+                <label for="txtUserName" class="form-label">Email address</label>
+                <input type="text" class="form-control" id="txtUserName" aria-describedby="emailHelp" name="txtUserName">
+            </div>
+            <div class="mb-3">
+                <label for="txtPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">Submit</button>
+            <div id="emailHelp" class="form-text">@ViewBag.Message</div>
+        </form>
+    </div>
+</div>
+

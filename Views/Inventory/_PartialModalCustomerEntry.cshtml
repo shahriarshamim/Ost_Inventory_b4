@@ -1,0 +1,22 @@
+﻿<div id="dvModalCustomer" style="display: none;">
+    <div class="row">
+        <div class="col col-12">
+            <form action="@Url.Action("AddCustomer","Inventory")" method="post">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Customer Name</span>
+                    <input type="text" name="txtCustomerName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Customer mobile</span>
+                    <input type="text" name="txtCustomerMobile" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Customer Address</span>
+                    <input type="text" name="txtCustomerAddress" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <input type="submit" value="Save" />
+            </form>
+
+        </div>
+    </div>
+</div>

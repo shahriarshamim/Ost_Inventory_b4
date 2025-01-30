@@ -1,0 +1,58 @@
+﻿@using Ost_Inventory_b4.Models
+@using System.Data
+@{
+    ViewBag.Title = "CustomerAssignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    DataTable dataTable = BaseCustomer.ListCustomer();
+    var pdata = (from p in dataTable.AsEnumerable()
+                 select new
+                 {
+                     CustomerID = p.Field<Int32>("CustomerID").ToString(),
+                     CustomerName = p.Field<string>("CustomerName").ToString(),
+                 }).ToList();
+    BaseEquipment baseEquipment = new BaseEquipment();
+    List<BaseEquipment> ListEquipment = baseEquipment.LstEquipment();
+}
+
+@using (Html.BeginForm("CustomerAssignment", "Inventory", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col col-12">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group input-group-sm mb-3" id="inputGroup-sizing-sm">Customer Name</span>
+                @*<input type="text" name="txtName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">*@
+            <select class="form-select" name="ddlCustomer">
+                <option value="1">--Select--</option>
+                @{
+                    foreach (var customer in pdata)
+                    {
+                        <option value="@customer.CustomerID">@customer.CustomerName</option>
+                    }
+                }
+            </select>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group input-group-sm mb-3" id="inputGroup-sizing-sm">Equipment</span>
+                <select class="form-select" name="ddlEquipment">
+                    <option value="1">--Select--</option>
+                    @{
+                        foreach (BaseEquipment equipment in ListEquipment)
+                        {
+                            <option value="@equipment.EquipmentId">@(equipment.EquipmentName+"(In stock:"+equipment.Stock.ToString()+")")</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group input-group-sm mb-3" id="inputGroup-sizing-sm">Count</span>
+                <input type="text" name="txtEquiCount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <input type="submit" value="Save" />
+
+        </div>
+    </div>
+}
+
